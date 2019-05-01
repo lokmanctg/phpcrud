@@ -4,8 +4,12 @@ include_once($_SERVER["DOCUMENT_ROOT"]."/phpcrud/bootstrap.php");
 use Bitm\Product\Product;
 use Bitm\Utility\Utility;
 
-$product = new Product();
-$allproducts = $product->all();
+$query = "SELECT * FROM products ORDER BY id DESC";
+$sth = $conn->prepare($query);
+$sth->execute();
+$allproducts = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -35,8 +39,7 @@ $allproducts = $product->all();
             endforeach;
             ?>
         </div>
-        <?php include_once('elements/home_feature_right.php'); ?>
-        <?php include_once('elements/home_feature_left.php'); ?>
+
         <hr class="featurette-divider">
     </div>
     <?php include_once('elements/footer.php'); ?>

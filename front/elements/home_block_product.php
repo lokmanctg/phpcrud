@@ -7,6 +7,7 @@ $sth->execute();
 $newproducts = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
+
 <?php
 foreach($newproducts as $newproduct):
 ?>

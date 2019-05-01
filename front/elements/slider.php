@@ -10,7 +10,6 @@ $sth = $conn->prepare($query);
 $sth->execute();
 $banners = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
-?>
 
 
 <div class="bd-example">

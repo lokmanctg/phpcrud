@@ -3,9 +3,13 @@ include_once($_SERVER["DOCUMENT_ROOT"]."/phpcrud/bootstrap.php");
 
 use Bitm\Product\Product;
 use Bitm\Utility\Utility;
-
-$product = new Product();
-$product = $product->show($_GET['id']);
+$query = "SELECT * FROM products ORDER BY id DESC";
+$sth = $conn->prepare($query);
+$sth->execute();
+$newproducts = $sth->fetchAll(PDO::FETCH_ASSOC);
+?>
+<?php
+foreach($newproducts as $product):
 ?>
 <!doctype html>
 <html lang="en">
@@ -53,3 +57,6 @@ $product = $product->show($_GET['id']);
 <?php include_once('elements/scripts.php'); ?>
 </body>
 </html>
+<?php
+endforeach;
+?>
